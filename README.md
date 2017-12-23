@@ -8,10 +8,5 @@ https://github.com/M-Saleh/tweets-location-over-time/wiki/Phase-One-Design
 
 # Roughly TODOs for next phases:
 1. Start general stream to save all geo-tagged tweets where user search inin our DB supporting historical search.
-We need a time-series DB+handling queries with keywords! check :
-
-1.1. Cassandra Time Series Data Modeling. https://academy.datastax.com/resources/getting-started-time-series-data-modeling
-
-1.2. ElasticSearch. https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store. 
-
+We need a time-series DB+handling queries with keywords! check : Cassandra Time Series Data Modeling and elasticsearch-as-a-time-series-data-store. others : https://misfra.me/2016/04/09/tsdb-list/
 2. Handle visualization part.
