@@ -1,0 +1,6 @@
+# tweepy is an API for Twitter.
+tweepy
+
+# pypubsub is a publish/subscribe model https://pypubsub.readthedocs.io/en/v4.0.0/usage/usage_basic.html
+pypubsub
+
