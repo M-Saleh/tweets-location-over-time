@@ -1,1 +1,5 @@
-TWEETS_CHANNEL="new_tweet"
+TWEETS_CHANNEL = "new_tweet"
+consumer_key = "Ml8kMMtSG1N5EF24LGJ4PfGgf"
+consumer_secret = "iBMrOdnpbomqlZGCDp18mfzR2NfjjquNYRubFACVIAhsGxgYxT"
+access_token = "3245228090-iaNQPToVL7zRc9oieZIFTQYCZenrxjsEkX2nlPH"
+access_token_secret = "BVzl9CdixvU4zascxMFxNWfqqqsNtHa23Jt8vwgwNleXL"

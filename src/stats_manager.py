@@ -4,5 +4,5 @@ id, latitude, longitude, dateTime
 
 
 def new_tweet(tweet):
-    print("New tweet to stats manager")
+    print(tweet._json)
 

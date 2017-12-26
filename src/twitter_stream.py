@@ -1,21 +1,49 @@
 """ Open Stream with Twitter, publish new tweet using pypubsub on config.TWEETS_CHANNEL"""
-
+import tweepy
 import src.config as config
-import src.archiver as archiver
-import src.stats_manager as stats_manager
-from pubsub import pub
-import time
 
-# TODO Use another pub/sub model where components to be totally separated in different processes/projects. e.g. Redis.
-pub.subscribe(archiver.new_tweet, config.TWEETS_CHANNEL)
-pub.subscribe(stats_manager.new_tweet, config.TWEETS_CHANNEL)
 
-if __name__ == "__main__":
-    count = 0
-    while count < 1000:
-        msg = "Message Number" + str(count)
-        pub.sendMessage(config.TWEETS_CHANNEL, tweet=msg)
-        print("Sent # " + str(count))
-        count += 1
-        time.sleep(1)
+class StreamListener(tweepy.StreamListener):
 
+    def setup(self, pubr):
+        """ Set the Stream to Stream Listener"""
+        self.pub = pubr
+
+    def on_status(self, status):
+        """ New tweet for this account stream"""
+        self.pub.sendMessage(config.TWEETS_CHANNEL, tweet=status)
+
+    def on_error(self, status_code):
+        print("on_error : " + str(status_code))
+
+    def on_timeout(self):
+        print("on_timeout")
+
+    def on_connect(self):
+        print("on_connect")
+
+    def on_disconnect(self, notice):
+        print("on_disconnect")
+
+    def on_closed(self, resp):
+        print("on_closed")
+
+
+class Stream:
+    def __init__(self, keywords, pub):
+        print("Start streaming with keywords : " + str(keywords.split(',')))
+        self.keywords = keywords
+
+        twitter_auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+        twitter_auth.set_access_token(config.access_token, config.access_token_secret)
+        self.streamListen = StreamListener()
+        self.streamListen.setup(pub)
+        self.twitterStream = tweepy.Stream(twitter_auth, self.streamListen)
+
+    def run(self):
+        while True:
+            try:
+                self.twitterStream.filter(track=self.keywords.split(','))
+            except Exception as e:
+                print(str(e))
+                continue

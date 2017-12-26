@@ -2,4 +2,4 @@
 
 
 def new_tweet(tweet):
-    print("New tweet to archiver")
+    print(tweet._json)
