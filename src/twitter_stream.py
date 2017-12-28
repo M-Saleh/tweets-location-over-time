@@ -43,6 +43,9 @@ class Stream:
     def run(self):
         while True:
             try:
+                # rect.min_lng, rect.min_lat, rect.max_lng, rect.max_lat
+                # loc = [-90,-90,90,90]
+                # self.twitterStream.filter(locations=loc)
                 self.twitterStream.filter(track=self.keywords.split(','))
             except Exception as e:
                 print(str(e))

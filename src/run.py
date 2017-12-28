@@ -11,6 +11,6 @@ pub.subscribe(stats_manager.new_tweet, config.TWEETS_CHANNEL)
 
 
 if __name__ == "__main__":
-    keywords = "football,egypt"
+    keywords = "football,egypt,good"
     stream = twitter_stream.Stream(keywords, pub)
     stream.run()
