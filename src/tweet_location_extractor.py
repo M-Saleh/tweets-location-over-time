@@ -48,5 +48,4 @@ def get_location_google_geo(location):
         geo = geo_response["geometry"]["location"]
         return [geo["lng"], geo["lat"]]
     else:
-        print(str(location) + " Not found in Google")
         return None
